@@ -12,12 +12,9 @@ export default function App() {
       <Routes>
         <Route element={<Layout />} >
           <Route path="/" element={<Home />} />
-
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/learn" element={<Learn />} >
-            <Route path=":id" element={<Learn />}></Route>
-          </Route>
-
+          <Route path="/learn" element={<Learn />} />
+          <Route path="/learn/:id" element={<Learn />} />
         </Route>
 
       </Routes>
