@@ -91,7 +91,7 @@ function Learn() {
 
             {!videoId &&
                 <>
-                    <div className="max-w-screen-xl mx-auto">
+                    <div className="max-w-screen-lg mx-auto px-4">
                         <div className="mb-4">
                             <input
                                 type="text"
