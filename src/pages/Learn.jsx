@@ -2,9 +2,23 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import YouTube from 'react-youtube';
 
+
+import lesson from "../assets/lesson.mp4"
+const VideoPlayer = ({ src, width, height }) => {
+    return (
+        <div>
+            <video width={width} height={height} controls>
+                <source src={src} type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    );
+};
+
 function Learn() {
     const [videoId, setVideoId] = useState('');
     const [videoLink, setVideoLink] = useState('');
+    const [offline, setOffline] = useState(true);
     const { id } = useParams();
     const [opts, setOpts] = useState({
         height: '720',
@@ -82,14 +96,17 @@ function Learn() {
 
     return (
         <div className="max-w-screen-xl mx-auto">
-            {videoId && <YouTube
+            {!offline && videoId && <YouTube
                 videoId={videoId}
                 opts={opts}
                 onReady={onReady}
                 onStateChange={onStateChange}
             />}
+            {
+                offline && <VideoPlayer src={lesson} width={opts.width} height={opts.height} />
+            }
 
-            {!videoId &&
+            {!offline && !videoId &&
                 <>
                     <div className="max-w-screen-lg mx-auto px-4">
                         <div className="mb-4">
